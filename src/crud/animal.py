@@ -15,7 +15,7 @@ def obtener_por_id(db: Session, animal_id: UUID) -> Animal | None:
     return db.get(Animal, animal_id)
 
 
-def _existe_nombre(db: Session, nombre: str, excluir_id: UUID | None = None) -> bool:
+def existe_nombre(db: Session, nombre, excluir_id: UUID | None = None):
     stmt = select(Animal).where(Animal.nombre == nombre)
     if excluir_id is not None:
         stmt = stmt.where(Animal.id != excluir_id)
@@ -23,7 +23,7 @@ def _existe_nombre(db: Session, nombre: str, excluir_id: UUID | None = None) -> 
 
 
 def crear(db: Session, datos: AnimalCreate) -> Animal:
-    if _existe_nombre(db, datos.nombre):
+    if existe_nombre(db, datos.nombre):
         raise ValueError(f"Ya existe un animal con el nombre '{datos.nombre}'")
 
     animal = Animal(nombre=datos.nombre, especie=datos.especie)
@@ -34,7 +34,7 @@ def crear(db: Session, datos: AnimalCreate) -> Animal:
 
 
 def actualizar(db: Session, animal: Animal, datos: AnimalUpdate) -> Animal:
-    if _existe_nombre(db, datos.nombre, excluir_id=animal.id):
+    if existe_nombre(db, datos.nombre, excluir_id=animal.id):
         raise ValueError(f"Ya existe un animal con el nombre '{datos.nombre}'")
 
     animal.nombre = datos.nombre
