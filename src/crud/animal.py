@@ -22,7 +22,7 @@ def crear(db: Session, nombre: str, especie: str) -> Animal:
     return animal
 
 
-def actualizar(db: Session, animal: Animal, nombre: str, especie: str) -> Animal:
+def actualizar(db: Session, animal: Animal, nombre: str, especie) -> Animal:
     animal.nombre = nombre
     animal.especie = especie
     db.commit()
