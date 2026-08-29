@@ -23,7 +23,11 @@ def obtener_empleado(empleado_id: UUID, db: Session = Depends(get_db)):
     return empleado
 
 
-@router.post("", response_model=EmpleadoRead, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "",
+    response_model=EmpleadoRead,
+    status_code=status.HTTP_201_CREATED,
+)
 def crear_empleado(datos: EmpleadoCreate, db: Session = Depends(get_db)):
     return repo.crear(db, datos)
 
