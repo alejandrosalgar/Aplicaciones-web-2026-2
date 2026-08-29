@@ -28,7 +28,9 @@ def crear(db: Session, datos: EmpleadoCreate) -> Empleado:
     return empleado
 
 
-def actualizar(db: Session, empleado: Empleado, datos: EmpleadoUpdate) -> Empleado:
+def actualizar(
+    db: Session, empleado: Empleado, datos: EmpleadoUpdate
+) -> Empleado:
     empleado.nombre = datos.nombre
     empleado.cargo = datos.cargo
     empleado.departamento = datos.departamento

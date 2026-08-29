@@ -13,4 +13,6 @@ class Empleado(Base):
     nombre: Mapped[str] = mapped_column(String(120), nullable=False)
     cargo: Mapped[str] = mapped_column(String(120), nullable=False)
     departamento: Mapped[str] = mapped_column(String(120), nullable=False)
-    email: Mapped[str] = mapped_column(String(254), nullable=False, unique=True)
+    email: Mapped[str] = mapped_column(
+        String(254), nullable=False, unique=True
+    )

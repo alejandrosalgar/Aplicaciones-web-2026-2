@@ -1,8 +1,7 @@
+from decimal import Decimal
 from uuid import UUID
 
 from pydantic import BaseModel, Field
-from decimal import Decimal
-
 
 
 class ProductCreate(BaseModel):
@@ -14,7 +13,8 @@ class ProductCreate(BaseModel):
     stock: int = Field(ge=0)
     available: bool = Field(default=True)
     image_url: str | None = Field(default=None, max_length=300)
-    brand: str |None = Field(default=None, max_length=80)
+    brand: str | None = Field(default=None, max_length=80)
+
 
 class ProductUpdate(BaseModel):
     name: str = Field(min_length=1, max_length=50)

@@ -1,7 +1,5 @@
-from sklearn.gaussian_process.kernels import Product
+from src.entities.empleados import Empleado
 from src.entities.personas import Persona
+from src.entities.product import Product
 
-
-__all__ = ["Persona"]
-__all__ = ["Product"]
-
+__all__ = ["Empleado", "Persona", "Product"]

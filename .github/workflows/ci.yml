@@ -1,0 +1,45 @@
+name: CI - Verificar Pull Request
+
+# Se dispara al abrir un PR hacia main y en cada push a ese PR
+"on":
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verificar:
+    name: Verificar codigo, formato PEP 8 y conexion a la base de datos
+    runs-on: ubuntu-latest
+    environment: DATABASE_URL
+
+    steps:
+      - name: Descargar el codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verificar que el codigo compile
+        run: python -m compileall -q main.py src
+
+      - name: Verificar formato PEP 8 con Pylint
+        run: python -m pylint main.py src
+
+      - name: Verificar que la app FastAPI se pueda importar
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python -c "from main import app; print('Rutas registradas', len(app.routes))"
+
+      - name: Verificar la conexion a la base de datos
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python -m scripts.verificar_bd
