@@ -1,6 +1,10 @@
+from uuid import UUID
+
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src.entities.producto import Producto
 from src.schemas.producto import ProductoCreate, ProductoUpdate
+
 
 def crear_producto(db: Session, producto: ProductoCreate):
     nuevo = Producto(nombre=producto.nombre, precio=producto.precio)
@@ -9,13 +13,18 @@ def crear_producto(db: Session, producto: ProductoCreate):
     db.refresh(nuevo)
     return nuevo
 
+
 def listar_productos(db: Session):
     return db.query(Producto).all()
 
-def obtener_producto(db: Session, producto_id: str):
-    return db.query(Producto).filter(Producto.id == producto_id).first()
 
-def actualizar_producto(db: Session, producto_id: str, datos: ProductoUpdate):
+def obtener_producto(db: Session, producto_id: UUID) -> Producto | None:
+    return db.scalar(select(Producto).where(Producto.id == producto_id))
+
+
+def actualizar_producto(
+    db: Session, producto_id: UUID, datos: ProductoUpdate
+) -> Producto | None:
     producto = obtener_producto(db, producto_id)
     if producto:
         producto.nombre = datos.nombre
@@ -24,7 +33,8 @@ def actualizar_producto(db: Session, producto_id: str, datos: ProductoUpdate):
         db.refresh(producto)
     return producto
 
-def eliminar_producto(db: Session, producto_id: str):
+
+def eliminar_producto(db: Session, producto_id: UUID) -> Producto | None:
     producto = obtener_producto(db, producto_id)
     if producto:
         db.delete(producto)

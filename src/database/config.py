@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     def sqlalchemy_url(self) -> str:
         if self.database_url.startswith("postgresql://"):
             return self.database_url.replace(
-                "postgresql://", "postgresql+psycopg://", 1
+                "postgresql://", "postgresql+psycopg2://", 1
             )
         return self.database_url
 

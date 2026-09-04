@@ -5,10 +5,13 @@ from fastapi import FastAPI
 from src.api.empleados import router as empleados_router
 from src.api.personas import router as personas_router
 from src.api.product import router as product_router
+from src.api.producto import router as productos_router
 from src.database.database import Base, engine
-from src.entities import Product as _product_model
-from src.entities import empleados as _empleados_model
-from src.entities import personas as _personas_model
+from src.entities import Product, Producto
+from src.entities.empleados import Empleado
+from src.entities.personas import Persona
+
+MODELOS = (Product, Producto, Empleado, Persona)
 
 
 @asynccontextmanager
@@ -36,3 +39,4 @@ def inicio():
 app.include_router(personas_router)
 app.include_router(empleados_router)
 app.include_router(product_router)
+app.include_router(productos_router)
