@@ -23,7 +23,11 @@ def obtener_persona(persona_id: UUID, db: Session = Depends(get_db)):
     return persona
 
 
-@router.post("", response_model=PersonaRead, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "",
+    response_model=PersonaRead,
+    status_code=status.HTTP_201_CREATED,
+)
 def crear_persona(datos: PersonaCreate, db: Session = Depends(get_db)):
     return repo.crear(db, datos)
 
