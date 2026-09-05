@@ -1,7 +1,8 @@
-from sklearn.gaussian_process.kernels import Product
-from src.entities.personas import Persona
+"""Paquete de entidades del proyecto.
 
+Se importa cada modelo de forma explícita desde sus módulos para evitar
+acoplar el arranque de la app a todas las entidades a la vez.
+"""
 
-__all__ = ["Persona"]
-__all__ = ["Product"]
+__all__ = []
 
