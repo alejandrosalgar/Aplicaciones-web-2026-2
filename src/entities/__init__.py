@@ -1,8 +1,8 @@
-"""Paquete de entidades del proyecto.
+"""Exports del paquete de entidades."""
 
-Se importa cada modelo de forma explícita desde sus módulos para evitar
-acoplar el arranque de la app a todas las entidades a la vez.
-"""
+from src.entities.empleados import Empleado
+from src.entities.personas import Persona
+from src.entities.product import Product
 
-__all__ = []
+__all__ = ["Empleado", "Persona", "Product"]
 
