@@ -382,8 +382,9 @@ curl -X POST http://127.0.0.1:8000/estudiantes ^
 | `requirements.txt` | Dependencias Python (`fastapi`, `uvicorn`) |
 | `README.md` | Esta guía conceptual y de uso |
 | [`GUIA-NEON-ORM.md`](GUIA-NEON-ORM.md) | Taller: Neon, ORM, encarpetado por capas y API persistente |
+| [`README-PIPELINE.md`](README-PIPELINE.md) | Introducción a CI/CD: GitHub Actions, YAML y el pipeline de PR y merge |
 
-Próximos pasos: sigue la [guía práctica Neon + ORM](GUIA-NEON-ORM.md) para crear la base, conectar SQLAlchemy y montar GET/POST/PUT/DELETE contra PostgreSQL.
+Próximos pasos: sigue la [guía práctica Neon + ORM](GUIA-NEON-ORM.md) para crear la base, conectar SQLAlchemy y montar GET/POST/PUT/DELETE contra PostgreSQL. Después, la [guía de CI/CD](README-PIPELINE.md) automatiza la verificación de cada Pull Request y la carga de datos tras el merge.
 
 ---
 

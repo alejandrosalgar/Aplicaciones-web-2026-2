@@ -1,0 +1,39 @@
+name: CD - Migrar y sembrar la base de datos
+
+# Se dispara al hacer merge (push) a main y tambien a mano
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Evita que dos merges seguidos escriban en la base al mismo tiempo
+concurrency:
+  group: cd-main
+  cancel-in-progress: false
+
+jobs:
+  migrar-y-sembrar:
+    name: Crear tablas nuevas y cargar datos base
+    runs-on: ubuntu-latest
+    environment: DATABASE_URL
+
+    steps:
+      - name: Descargar el codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Crear tablas nuevas y ejecutar el seeder
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python -m src.database.seeder

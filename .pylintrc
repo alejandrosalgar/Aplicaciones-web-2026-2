@@ -1,0 +1,28 @@
+[MAIN]
+py-version=3.11
+jobs=0
+fail-under=10
+ignore-paths=^scripts/
+
+[FORMAT]
+max-line-length=79
+indent-string='    '
+indent-after-paren=4
+
+[BASIC]
+argument-naming-style=snake_case
+attr-naming-style=snake_case
+class-naming-style=PascalCase
+const-naming-style=UPPER_CASE
+function-naming-style=snake_case
+method-naming-style=snake_case
+module-naming-style=snake_case
+variable-naming-style=snake_case
+good-names=db,id,i,j,k,ex,Run,_
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-few-public-methods,
