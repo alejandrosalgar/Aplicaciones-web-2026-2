@@ -19,7 +19,10 @@ def listar_empleados(db: Session = Depends(get_db)):
 def obtener_empleado(empleado_id: UUID, db: Session = Depends(get_db)):
     empleado = repo.obtener_por_id(db, empleado_id)
     if empleado is None:
-        raise HTTPException(status_code=404, detail="Empleado no encontrado")
+        raise HTTPException(
+            status_code=404,
+            detail="Empleado no encontrado",
+        )
     return empleado
 
 
@@ -40,7 +43,10 @@ def actualizar_empleado(
 ):
     empleado = repo.obtener_por_id(db, empleado_id)
     if empleado is None:
-        raise HTTPException(status_code=404, detail="Empleado no encontrado")
+        raise HTTPException(
+            status_code=404,
+            detail="Empleado no encontrado",
+        )
     return repo.actualizar(db, empleado, datos)
 
 
@@ -48,5 +54,8 @@ def actualizar_empleado(
 def eliminar_empleado(empleado_id: UUID, db: Session = Depends(get_db)):
     empleado = repo.obtener_por_id(db, empleado_id)
     if empleado is None:
-        raise HTTPException(status_code=404, detail="Empleado no encontrado")
+        raise HTTPException(
+            status_code=404,
+            detail="Empleado no encontrado",
+        )
     repo.eliminar(db, empleado)
