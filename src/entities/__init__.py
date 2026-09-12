@@ -1,3 +1,5 @@
+"""Exports del paquete de entidades."""
+
 from src.entities.empleados import Empleado
 from src.entities.personas import Persona
 from src.entities.product import Product
