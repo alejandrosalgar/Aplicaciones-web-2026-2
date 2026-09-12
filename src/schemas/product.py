@@ -40,4 +40,6 @@ class ProductRead(BaseModel):
     image_url: str | None
     brand: str | None
 
+
+
     model_config = {"from_attributes": True}
