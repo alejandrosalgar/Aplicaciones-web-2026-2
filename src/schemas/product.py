@@ -28,6 +28,7 @@ class ProductUpdate(BaseModel):
     brand: str | None = Field(default=None, max_length=80)
 
 
+
 class ProductRead(BaseModel):
     id: UUID
     name: str
@@ -39,5 +40,7 @@ class ProductRead(BaseModel):
     available: bool
     image_url: str | None
     brand: str | None
+
+
 
     model_config = {"from_attributes": True}
