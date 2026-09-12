@@ -383,8 +383,9 @@ curl -X POST http://127.0.0.1:8000/estudiantes ^
 | `README.md` | Esta guía conceptual y de uso |
 | [`GUIA-NEON-ORM.md`](GUIA-NEON-ORM.md) | Taller: Neon, ORM, encarpetado por capas y API persistente |
 | [`README-PIPELINE.md`](README-PIPELINE.md) | Introducción a CI/CD: GitHub Actions, YAML y el pipeline de PR y merge |
+| [`README-TESTS-DOCKER.md`](README-TESTS-DOCKER.md) | Tests (pytest, unitarios) y Docker: qué son, cuándo usarlos y cómo entran al pipeline |
 
-Próximos pasos: sigue la [guía práctica Neon + ORM](GUIA-NEON-ORM.md) para crear la base, conectar SQLAlchemy y montar GET/POST/PUT/DELETE contra PostgreSQL. Después, la [guía de CI/CD](README-PIPELINE.md) automatiza la verificación de cada Pull Request y la carga de datos tras el merge.
+Próximos pasos: sigue la [guía práctica Neon + ORM](GUIA-NEON-ORM.md) para crear la base, conectar SQLAlchemy y montar GET/POST/PUT/DELETE contra PostgreSQL. Después, la [guía de CI/CD](README-PIPELINE.md) automatiza la verificación de cada Pull Request y la carga de datos tras el merge. La [guía de tests y Docker](README-TESTS-DOCKER.md) explica cómo comprobar el contrato de la API y cómo empaquetar el mismo runtime en local, en Actions y en un servidor.
 
 ---
 

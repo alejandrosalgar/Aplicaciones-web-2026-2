@@ -2,7 +2,7 @@
 
 Introducción al **CI/CD** y paso a paso del pipeline que montaremos en este repositorio.
 
-La teoría de APIs está en [`README.md`](README.md) y el taller de base de datos en [`GUIA-NEON-ORM.md`](GUIA-NEON-ORM.md). Esta guía responde a otra pregunta: **¿cómo verificamos automáticamente que lo que se sube al repositorio funciona, y cómo preparamos la base de datos sin entrar a hacerlo a mano?**
+La teoría de APIs está en [`README.md`](README.md), el taller de base de datos en [`GUIA-NEON-ORM.md`](GUIA-NEON-ORM.md) y la capa de tests + Docker en [`README-TESTS-DOCKER.md`](README-TESTS-DOCKER.md). Esta guía responde a otra pregunta: **¿cómo verificamos automáticamente que lo que se sube al repositorio funciona, y cómo preparamos la base de datos sin entrar a hacerlo a mano?**
 
 ---
 
@@ -500,7 +500,8 @@ Aplicaciones-web-2026-2/
 ├── requirements.txt
 ├── README.md
 ├── GUIA-NEON-ORM.md
-└── README-PIPELINE.md              # esta guia
+├── README-PIPELINE.md              # esta guia
+└── README-TESTS-DOCKER.md          # pytest, unit tests y Docker en CI/CD
 ```
 
 ---
