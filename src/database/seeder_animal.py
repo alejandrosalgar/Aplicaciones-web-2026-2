@@ -1,5 +1,7 @@
 """Datos iniciales de la base. Se puede ejecutar cuantas veces se quiera."""
 
+# pylint: disable=duplicate-code
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
