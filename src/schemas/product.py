@@ -28,6 +28,7 @@ class ProductUpdate(BaseModel):
     brand: str | None = Field(default=None, max_length=80)
 
 
+
 class ProductRead(BaseModel):
     id: UUID
     name: str

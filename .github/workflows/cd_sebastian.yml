@@ -1,0 +1,37 @@
+name: CD - Migrar y sembrar tabla animales
+
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: cd-main
+  cancel-in-progress: false
+
+jobs:
+  migrar-y-sembrar:
+    name: Realizar migraciones y cargar datos base
+    runs-on: ubuntu-latest
+    environment: DATABASE_URL
+
+    steps:
+      - name: Descargar el código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Migrar bd y ejecutar el seeder
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python -m src.database.seeder_animal
