@@ -34,9 +34,9 @@ jobs:
       - name: Crear tabla productos
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: python src/database/migration_producto.py
+        run: python -m src.database.migration_producto
 
       - name: Ejecutar seeder de Producto
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: python src/database/seeder_producto.py
+        run: python -m src.database.seeder_producto
