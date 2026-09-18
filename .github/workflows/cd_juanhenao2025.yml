@@ -1,0 +1,42 @@
+name: CD - Producto Juan Henao
+
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: cd-juanhenao2025-producto
+  cancel-in-progress: false
+
+jobs:
+  migrar-y-sembrar-producto:
+    name: Migrar y sembrar productos
+    runs-on: ubuntu-latest
+    environment: DATABASE_URL
+
+    steps:
+      - name: Descargar el codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Crear tabla productos
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python src/database/migration_producto.py
+
+      - name: Ejecutar seeder de Producto
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python src/database/seeder_producto.py
