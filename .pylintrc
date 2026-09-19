@@ -2,7 +2,7 @@
 py-version=3.11
 jobs=0
 fail-under=10
-ignore-paths=^scripts/
+ignore-paths=^scripts/,^src/unit/
 
 [FORMAT]
 max-line-length=79

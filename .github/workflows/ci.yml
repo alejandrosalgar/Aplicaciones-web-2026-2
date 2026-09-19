@@ -33,6 +33,11 @@ jobs:
       - name: Verificar formato PEP 8 con Pylint
         run: python -m pylint main.py src
 
+      - name: Ejecutar tests con pytest
+        env:
+          DATABASE_URL: sqlite://
+        run: python -m pytest -q
+
       - name: Verificar que la app FastAPI se pueda importar
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -43,3 +48,6 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: python -m scripts.verificar_bd
+
+      - name: Construir imagen Docker
+        run: docker build -t api-itm:${{ github.sha }} .
