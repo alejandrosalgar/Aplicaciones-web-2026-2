@@ -32,5 +32,5 @@ def actualizar(db: Session, persona: Persona, datos: PersonaUpdate) -> Persona:
 
 
 def eliminar(db: Session, persona: Persona) -> None:
-    db.delete(e)
+    db.delete(persona)
     db.commit()
