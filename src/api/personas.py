@@ -19,7 +19,10 @@ def listar_personas(db: Session = Depends(get_db)):
 def obtener_persona(persona_id: UUID, db: Session = Depends(get_db)):
     persona = repo.obtener_por_id(db, persona_id)
     if persona is None:
-        raise HTTPException(status_code=404, detail="Persona no encontrada")
+        raise HTTPException(
+            status_code=404,
+            detail="Persona no encontrada",
+        )
     return persona
 
 
@@ -40,7 +43,10 @@ def actualizar_persona(
 ):
     persona = repo.obtener_por_id(db, persona_id)
     if persona is None:
-        raise HTTPException(status_code=404, detail="Persona no encontrada")
+        raise HTTPException(
+            status_code=404,
+            detail="Persona no encontrada",
+        )
     return repo.actualizar(db, persona, datos)
 
 
@@ -48,5 +54,8 @@ def actualizar_persona(
 def eliminar_persona(persona_id: UUID, db: Session = Depends(get_db)):
     persona = repo.obtener_por_id(db, persona_id)
     if persona is None:
-        raise HTTPException(status_code=404, detail="Persona no encontrada")
+        raise HTTPException(
+            status_code=404,
+            detail="Persona no encontrada",
+        )
     repo.eliminar(db, persona)
