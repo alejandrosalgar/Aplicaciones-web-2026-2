@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from uuid import uuid4
 
 PERSONA_VALIDA = {
@@ -9,7 +10,7 @@ PERSONA_VALIDA = {
 def test_crear_persona_devuelve_201(cliente):
     respuesta = cliente.post("/personas", json=PERSONA_VALIDA)
 
-    assert respuesta.status_code == 201
+    assert respuesta.status_code == HTTPStatus.CREATED.value
     cuerpo = respuesta.json()
     assert "id" in cuerpo
     assert cuerpo["nombre"] == PERSONA_VALIDA["nombre"]
@@ -49,5 +50,9 @@ def test_borrar_persona_creada_devuelve_204(cliente):
     respuesta = cliente.delete(f"/personas/{persona_id}")
 
     assert respuesta.status_code == 204
+    consulta = cliente.get(f"/personas/{persona_id}")
+    assert consulta.status_code == 404
+    consulta = cliente.get(f"/personas/{persona_id}")
+    assert consulta.status_code == 404
     consulta = cliente.get(f"/personas/{persona_id}")
     assert consulta.status_code == 404
