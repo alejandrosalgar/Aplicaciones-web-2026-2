@@ -7,14 +7,22 @@ class EmpleadoCreate(BaseModel):
     nombre: str = Field(min_length=1, max_length=120)
     cargo: str = Field(min_length=1, max_length=120)
     departamento: str = Field(min_length=1, max_length=120)
-    email: str = Field(min_length=3, max_length=254)
+    email: str = Field(
+        min_length=3,
+        max_length=254,
+        pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+    )
 
 
 class EmpleadoUpdate(BaseModel):
     nombre: str = Field(min_length=1, max_length=120)
     cargo: str = Field(min_length=1, max_length=120)
     departamento: str = Field(min_length=1, max_length=120)
-    email: str = Field(min_length=3, max_length=254)
+    email: str = Field(
+        min_length=3,
+        max_length=254,
+        pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+    )
 
 
 class EmpleadoRead(BaseModel):
