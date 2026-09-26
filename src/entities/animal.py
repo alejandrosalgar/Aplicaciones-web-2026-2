@@ -17,3 +17,7 @@ class Animal(Base):
     )
     nombre: Mapped[str] = mapped_column(String(100), nullable=False)
     especie: Mapped[str] = mapped_column(String(100), nullable=False)
+
+    def __init__(self, nombre: str, especie: str):
+        self.nombre = nombre
+        self.especie = especie
