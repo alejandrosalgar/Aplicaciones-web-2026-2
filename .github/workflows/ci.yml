@@ -50,4 +50,20 @@ jobs:
         run: python -m scripts.verificar_bd
 
       - name: Construir imagen Docker
-        run: docker build -t api-itm:${{ github.sha }} .
+        run: docker compose build
+
+      - name: Ejecutar y comprobar la aplicacion en Docker
+        run: |
+          docker compose up --detach
+          for attempt in {1..30}; do
+            if curl --fail --silent http://localhost:8000/; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker compose logs
+          exit 1
+
+      - name: Detener contenedores Docker
+        if: always()
+        run: docker compose down --volumes
